@@ -142,10 +142,11 @@ def upload_to_box(creds, quiet):
                 '-1',
                 '--disable-epsv',
                 '--ftp-skip-pasv-ip',
-                '--ftp-ssl',
+                '--ssl',
                 '--netrc-file', netrc_file.name,
                 '--ftp-create-dirs',
                 '--globoff',
+                '--retry', '10',
                 *file_args,
             ],
             check=True,
@@ -216,6 +217,9 @@ def main(args):
     # Get authentication for Box.com from credentials file
     with open('/opt/share/backups/box-creds.json') as f:
         creds = json.load(f)
+
+    # Make sure our refresh token is still active, and fail otherwise.
+    get_access_token(creds)
 
     # Used for statistics, shown at the end of the run.
     start_time = time.time()
