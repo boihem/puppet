@@ -17,7 +17,10 @@ mod 'puppet-prometheus',                   '6.2.0'
 mod 'puppetlabs-apache',                   '3.1.0'
 mod 'puppetlabs-apt',                      '6.3.0'
 mod 'puppetlabs-concat',                   '4.2.1'
-mod 'puppetlabs-firewall',                 '1.12.0'
+# TODO: change back once https://github.com/puppetlabs/puppetlabs-firewall/pull/892 is merged
+mod 'puppetlabs-firewall',
+  :git    => 'https://github.com/fydai/puppetlabs-firewall',
+  :branch => 'random-fully'
 mod 'puppetlabs-hocon',                    '1.0.0'
 mod 'puppetlabs-inifile',                  '2.2.2' # Dependency of puppetlabs-puppetdb
 mod 'puppetlabs-kubernetes',               '5.0.0'
